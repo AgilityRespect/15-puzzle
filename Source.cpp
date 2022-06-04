@@ -1,7 +1,5 @@
 #include <iostream>
 
-using namespace std;
-
 int Array[4][4] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0 }; // zero tile is an empty one
 
 void Display() // displays matrix Array
@@ -10,11 +8,11 @@ void Display() // displays matrix Array
 	{
 		for (int j = 0; j < 4; j++)
 		{
-			cout << "	" << Array[i][j];
+			std::cout << "	" << Array[i][j];
 		}
-		cout << endl;
+		std::cout << std::endl;
 	}
-	cout << endl;
+	std::cout << std::endl;
 }
 
 void Shuffle() // swaps two random tiles ten times
@@ -32,7 +30,7 @@ void Shuffle() // swaps two random tiles ten times
 	}
 }
 
-bool IsSolving() // checks if puzzle can be solved
+bool IsSolvable() // checks if puzzle can be solved
 {
 	int Counter = 0;
 	int ZerosLine = 0;
@@ -65,7 +63,7 @@ void Move(int a, int b) // a is line, b is column // moves a tile to empty squar
 {
 	if (!((-1 < a && a < 4) && (-1 < b && b < 4)))
 	{
-		cout << "Wrong input" << endl;
+		std::cout << "Wrong input" << std::endl;
 		return;
 	}
 	if (-1 < a - 1 && a - 1 < 4)
@@ -104,7 +102,7 @@ void Move(int a, int b) // a is line, b is column // moves a tile to empty squar
 			return;
 		}
 	}
-	cout << "Can't move this tile" << endl;
+	std::cout << "Can't move this tile" << std::endl;
 }
 
 bool IsSolved() // checks if game is over
@@ -125,20 +123,20 @@ void Play() // main function that allows to play until you win, use Ctrl + C to 
 	{
 		Shuffle();
 	}
-	while (!IsSolving());
+	while (!IsSolvable());
 	Display();
 	int x = 0;
 	int y = 0;
 	while (!IsSolved())
 	{
-		cout << "Input line and column" << endl;
-		cin >> x >> y;
+		std::cout << "Input line and column" << std::endl;
+		std::cin >> x >> y;
 		x--;
 		y--;
 		Move(x, y);
 		Display();
 	}
-	cout << "You win!" << endl;
+	std::cout << "You win!" << std::endl;
 }
 
 int main()
